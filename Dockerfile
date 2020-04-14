@@ -7,11 +7,6 @@ RUN apt-get update && apt-get install -y curl unzip
 RUN curl https://www.etlegacy.com/download/file/121 -o /etlegacy/etlegacy.tar.gz
 RUN tar -xzf etlegacy.tar.gz
 
-# Download PK3 assets from official installation
-RUN curl https://cdn.splashdamage.com/downloads/games/wet/et260b.x86_full.zip -o /etlegacy/et.zip
-RUN unzip et.zip
-RUN ./et260b.x86_keygen_V03.run --noexec --keep
-
 ###
 
 FROM ubuntu
@@ -20,7 +15,6 @@ WORKDIR /etlegacy
 
 # Copy server files and assets
 COPY --from=download /etlegacy/etlegacy-v2.76-x86_64 /etlegacy/
-COPY --from=download /etlegacy/et-linux_work/etmain/pak* /etlegacy/etmain/
 
 RUN mkdir -p /root/.etlegacy
 
